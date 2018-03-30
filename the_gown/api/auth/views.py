@@ -1,7 +1,7 @@
 # the_gown/api/auth/views.py
 
 
-from flask import Blueprint, jsonify
+from flask import Blueprint
 
 # allows execution of a different function for each HTTP method
 from flask.views import MethodView
