@@ -1,0 +1,16 @@
+
+language: python
+
+python:
+  - "3.6"
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - nosetests --exe -v
+  - nosetests --exe --with-coverage --cover-package=the_gown/api
+  - coveralls
+
+after_success:
+  - "coveralls"
