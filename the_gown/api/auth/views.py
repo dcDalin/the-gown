@@ -1,13 +1,20 @@
 # the_gown/api/auth/views.py
 
+import json
 
-from flask import Blueprint
+from flask import Blueprint, request, make_response, jsonify
 
 # allows execution of a different function for each HTTP method
 from flask.views import MethodView
 
+# import the main logic class
+from the_gown.api.auth.business import Business
+
 # create a blueprint for /auth route
 auth_blueprint = Blueprint('auth', __name__, url_prefix='/auth')
+
+# initialize the business class
+init_business = Business()
 
 
 class RegisterAPI(MethodView):
@@ -16,7 +23,27 @@ class RegisterAPI(MethodView):
     """
 
     def post(self):
-        pass
+        # get the post data
+        post_data = request.get_json(force=True)
+        data = {
+            'first_name': post_data['first_name'],
+            'last_name': post_data['last_name'],
+            'email': post_data['email'],
+            'password': post_data['password']
+        }
+        if init_business.check_email_exists(data['email']):
+            responseObject = {
+                'status': 'fail',
+                'message': 'Email exists, login instead.'
+            }
+            return make_response(jsonify(responseObject)), 202
+
+        if init_business.register_user(data):
+            responseObject = {
+                'status': 'success',
+                'message': 'Successfully registered.'
+            }
+            return make_response(jsonify(responseObject)), 201
 
 
 class LoginAPI(MethodView):
@@ -34,7 +61,9 @@ class UserAPI(MethodView):
     """
 
     def get(self):
-        pass
+        return make_response(jsonify({
+            'data': init_business.show_users()
+        })), 200
 
 
 class LogoutAPI(MethodView):
