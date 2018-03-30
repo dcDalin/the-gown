@@ -35,3 +35,7 @@ app.config.from_object(app_settings)
 
 # pass flask app object to Bcrypt
 bcrypt = Bcrypt(app)
+
+# import auth blueprint and register it
+from the_gown.api.auth.views import auth_blueprint
+app.register_blueprint(auth_blueprint)
