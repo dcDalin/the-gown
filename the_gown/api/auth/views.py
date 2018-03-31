@@ -1,20 +1,26 @@
 # the_gown/api/auth/views.py
 
-import json
 
 from flask import Blueprint, request, make_response, jsonify
 
 # allows execution of a different function for each HTTP method
 from flask.views import MethodView
 
+from cerberus import Validator  # JSON validation
+
 # import the main logic class
 from the_gown.api.auth.business import Business
+
+# import our custom schema validation
+from the_gown.api.auth.schema import register_user_schema
 
 # create a blueprint for /auth route
 auth_blueprint = Blueprint('auth', __name__, url_prefix='/auth')
 
 # initialize the business class
 init_business = Business()
+
+v = Validator()
 
 
 class RegisterAPI(MethodView):
@@ -23,6 +29,8 @@ class RegisterAPI(MethodView):
     """
 
     def post(self):
+        # get our custom schema
+        schema = register_user_schema()
         # get the post data
         post_data = request.get_json(force=True)
         data = {
@@ -31,6 +39,10 @@ class RegisterAPI(MethodView):
             'email': post_data['email'],
             'password': post_data['password']
         }
+        # check validation against our schema
+        if not v.validate(data, schema):
+            return jsonify(v.errors), 400
+        # check if email exists
         if init_business.check_email_exists(data['email']):
             responseObject = {
                 'status': 'fail',
@@ -50,9 +62,7 @@ class LoginAPI(MethodView):
     """
     User Login Resource
     """
-
-    def post(self):
-        pass
+    pass
 
 
 class UserAPI(MethodView):
@@ -70,9 +80,7 @@ class LogoutAPI(MethodView):
     """
     Logout Resource
     """
-
-    def post(self):
-        pass
+    pass
 
 
 # define the API resources
@@ -86,6 +94,8 @@ auth_blueprint.add_url_rule(
     '/register',
     view_func=registration_view,
     methods=['POST']
+
+
 )
 auth_blueprint.add_url_rule(
     '/login',

@@ -27,12 +27,15 @@ class Business(TheGown):
         In addition to user provided data, below are done automatically and
         finally appended to the users list
         """
-        data['is_admin'] = False
-        data['user_id'] = str(uuid.uuid4())
-        data['registered_on'] = datetime.datetime.now()
+        data['first_name'] = data['first_name'].title()
+        data['last_name'] = data['last_name'].title()
+        data['email'] = data['email'].lower()
         data['password'] = bcrypt.generate_password_hash(
             data['password'], app.config.get('BCRYPT_LOG_ROUNDS')
         ).decode()
+        data['is_admin'] = False
+        data['user_id'] = str(uuid.uuid4())
+        data['registered_on'] = datetime.datetime.now()
         self.users.append(data)
         return True
 
