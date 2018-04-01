@@ -21,7 +21,7 @@ from the_gown.api import app
 
 class TestDevelopmentConfig(TestCase):
     """Test the Development Config Option"""
-
+    @classmethod
     def create_app(self):
         """Create app with Dev config and return it"""
         app.config.from_object('the_gown.api.config.DevelopmentConfig')

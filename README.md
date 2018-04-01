@@ -1,6 +1,6 @@
 # The Gown API
 
-[![Build Status](https://travis-ci.org/dcDalin/the-gown.svg?branch=master)](https://travis-ci.org/dcDalin/the-gown) [![Coverage Status](https://coveralls.io/repos/github/dcDalin/the-gown/badge.svg?branch=master)](https://coveralls.io/github/dcDalin/the-gown?branch=master) ![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)
+[![Build Status](https://travis-ci.org/dcDalin/the-gown.svg?branch=master)](https://travis-ci.org/dcDalin/the-gown) [![Coverage Status](https://coveralls.io/repos/github/dcDalin/the-gown/badge.svg?branch=master)](https://coveralls.io/github/dcDalin/the-gown?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f86dd37067654982a9ff93f1a844d59a)](https://www.codacy.com/app/dcDalin/the-gown?utm_source=github.com&utm_medium=referral&utm_content=dcDalin/the-gown&utm_campaign=Badge_Grade) [![Maintainability](https://api.codeclimate.com/v1/badges/ecaf58a01cb584ceae29/maintainability)](https://codeclimate.com/github/dcDalin/the-gown/maintainability) ![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)
 
 This is a Python Flask API implementation of a Wedding Gown Booking System.
 
