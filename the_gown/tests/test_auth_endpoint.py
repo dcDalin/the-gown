@@ -1,6 +1,5 @@
 # the_gown/tests/test_auth_endpoint.py
 
-import time
 import json
 import unittest
 
@@ -51,7 +50,8 @@ class TestAuthBlueprint(BaseTestCase):
                 self, 'dalin', 'oluoch', 'invalid@gmail.com', 'password')
             data = json.loads(response.data.decode())
             self.assertTrue(
-                data['password'][0] == "value does not match regex '(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'")
+                data['password'][0] ==
+                "value does not match regex '(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'")
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 

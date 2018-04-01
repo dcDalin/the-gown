@@ -5,7 +5,6 @@ This module does contains the business logic
 """
 import uuid  # unique random uuid
 import datetime  # manipulate date and time
-from flask import jsonify  # json format
 
 from the_gown.api import app, bcrypt  # app object and bcrypt
 

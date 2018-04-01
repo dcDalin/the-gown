@@ -27,7 +27,7 @@ class RegisterAPI(MethodView):
     """
     User Registration Resource
     """
-
+    @classmethod
     def post(self):
         # get our custom schema
         schema = register_user_schema()
@@ -69,7 +69,7 @@ class UserAPI(MethodView):
     """
     User Resource
     """
-
+    @classmethod
     def get(self):
         return make_response(jsonify({
             'data': init_business.show_users()

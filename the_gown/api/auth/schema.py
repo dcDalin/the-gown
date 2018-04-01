@@ -1,5 +1,3 @@
-import re
-
 # pasword regex
 # https://gist.github.com/ravibharathii/3975295
 
@@ -29,6 +27,7 @@ def register_user_schema():
             'empty': False,
             'maxlength': 30,
             'type': 'string',
-            'regex': '(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'
+            'regex':
+            '(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'
         }
     }
