@@ -28,7 +28,6 @@ class Business(TheGown):
         for find_email in self.users:
             if find_email['email'] == search_email:
                 return find_email
-            return False
 
     def register_user(self, data):
         """Register a new user method
