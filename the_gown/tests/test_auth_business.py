@@ -26,7 +26,7 @@ class TestAuthBusiness(unittest.TestCase):
         self.initAuth = Business()
 
     def test_check_email_exists(self):
-        '''Test if contact is added'''
+        '''Test email exists'''
         response = self.initAuth.check_email_exists('random@mail.com')
         self.assertFalse(response)
 
@@ -41,6 +41,11 @@ class TestAuthBusiness(unittest.TestCase):
         self.assertTrue(reg)
         response = self.initAuth.check_email_exists('the@email.co')
         self.assertTrue(response)
+
+    def test_retreive_by_email(self):
+        '''Test email retreival failed'''
+        response = self.initAuth.check_email_exists('random@rand.com')
+        self.assertFalse(response)
 
 
 if __name__ == '__main__':
