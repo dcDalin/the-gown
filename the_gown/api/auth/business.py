@@ -30,26 +30,6 @@ class Business(TheGown):
                 return find_email
             return False
 
-    def encode_auth_token(self, user_id):
-        """
-        Generates the Auth Token (encode token)
-        :return: string
-        """
-        try:
-            payload = {
-                'exp': datetime.datetime.utcnow() +
-                datetime.timedelta(days=0, seconds=5),
-                'iat': datetime.datetime.utcnow(),
-                'sub': user_id
-            }
-            return jwt.encode(
-                payload,
-                app.config.get('SECRET_KEY'),
-                algorithm='HS256'
-            )
-        except Exception as e:
-            return e
-
     def register_user(self, data):
         """Register a new user method
         In addition to user provided data, below are done automatically and

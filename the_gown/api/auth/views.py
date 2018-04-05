@@ -10,6 +10,8 @@ from cerberus import Validator  # JSON validation
 
 from the_gown.api import bcrypt  # bcrypt
 
+from the_gown.jwt.jwt import encode_auth_token  # jwt encode
+
 # import the main logic class
 from the_gown.api.auth.business import Business
 
@@ -87,7 +89,7 @@ class LoginAPI(MethodView):
             # decrypt password
             if bcrypt.check_password_hash(user_info['password'],
                                           data['password']):
-                auth_token = init_business.encode_auth_token(
+                auth_token = encode_auth_token(
                     user_info['user_id'])
                 responseObject = {
                     'status': 'success',
