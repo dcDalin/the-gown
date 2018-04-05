@@ -44,7 +44,7 @@ class TestAuthBusiness(unittest.TestCase):
 
     def test_retreive_by_email(self):
         '''Test email retreival failed'''
-        response = self.initAuth.check_email_exists('random@rand.com')
+        response = self.initAuth.retreive_by_email('random@rand.com')
         self.assertFalse(response)
 
 
